@@ -1,0 +1,31 @@
+
+  <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" >
+    <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md" (click)="toggleSidebar()"></i>
+  </span>
+  <div [ngClass]="{'left-minus-300': hideSidebar}" class="sidebar fixed top-0 bottom-0 lg:left-0 left-[-300px] duration-1000
+    p-2 w-[300px] overflow-y-auto text-center bg-gray-900 shadow h-screen">
+    <div class="text-gray-100 text-xl">
+      <div class="p-2.5 mt-1 flex items-center rounded-md ">
+        <h1 class="text-[15px]  ml-3 text-xl text-gray-200 font-bold">Sidebar</h1>
+        <svg class="w-6 h-6 text-gray-800 dark:text-white ml-24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" (click)="toggleSidebar()">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"/>
+        </svg>
+
+      </div>
+      <hr class="my-2 text-gray-600">
+
+      <div>
+        <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+          <i class="bi bi-house-door-fill"></i>
+          <span class="text-[15px] ml-4 text-gray-200" routerLink="/dashboard">Dashboard</span>
+        </div>
+        <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+          <i class="bi bi-bookmark-fill"></i>
+          <span class="text-[15px] ml-4 text-gray-200" routerLink="/add-contact">Add-Contact</span>
+        </div>
+      </div>
+    </div>
+    
+</div>
+
+<router-outlet></router-outlet>
