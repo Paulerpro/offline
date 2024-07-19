@@ -1,0 +1,46 @@
+<div class="max-w-sm mx-auto mt-20">
+  <div class="mb-4">
+    <h1 class="text-2xl font-bold">Add Contact</h1>
+  </div>
+  <form (ngSubmit)="submitForm()" #contactForm="ngForm">
+    <small *ngIf="contactForm.invalid && contactForm.touched" id="error-message">*All fields are required</small>
+    <div class="mb-4">
+      <label class="block text-gray-700">Name</label>
+      <input type="text" name="name" [(ngModel)]="details.name" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" #Name="ngModel">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Phone Number</label>
+      <input type="text" name="phoneNumber" [(ngModel)]="details.phoneNumber" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Email</label>
+      <input type="email" name="email" [(ngModel)]="details.email" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Addresses</label>
+      <div *ngFor="let addr of details.addresses; let i = index" class="flex items-center mt-1">
+        <input type="text" [(ngModel)]="details.addresses[i]" name="addresses" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <button type="button" (click)="removeAddress(i)" class="ml-2 p-2 bg-red-500 text-white rounded">Remove</button>
+      </div>
+      <button type="button" (click)="addAddress()" class="mt-2 p-2 bg-blue-500 text-white rounded">Add Address</button>
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700" >Longitude</label>
+      <input type="text" [(ngModel)]="details.longitude" name="longitude" disabled class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" #Longitude="ngModel">
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700">Latitude</label>
+      <input type="text" [(ngModel)]="details.latitude" name="latitude" disabled class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    </div>
+    <button 
+          type="submit" 
+          [disabled]="contactForm.invalid"
+          [ngClass]="{
+            'p-3 bg-green-500 text-white rounded form-valid': !contactForm.invalid,
+            'p-2 bg-gray-400 text-white rounded cursor-not-allowed': contactForm.invalid
+          }">
+    Submit</button>
+  </form>
+</div>
+
+<!-- p-2 bg-green-500 text-white rounded -->
