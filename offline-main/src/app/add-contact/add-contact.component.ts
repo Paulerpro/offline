@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-add-contact',
@@ -7,6 +8,9 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./add-contact.component.css'],
 })
 export class AddContactComponent {
+
+  constructor(private dataService: DataService) { }
+
   @ViewChild('contactForm') form: NgForm | undefined;
 
   details = {
@@ -31,11 +35,19 @@ export class AddContactComponent {
   }
 
   submitForm() {
-    this.form?.reset();
+    // let contacts = JSON.parse(localStorage.getItem('contacts') || '[]')
 
-    this.form?.form.patchValue({
-      longitude: this.details.longitude,
-      latitude: this.details.latitude,
-    });
+    // contacts.push(this.details)
+
+    // localStorage.setItem('contacts', JSON.stringify(contacts))
+
+    this.dataService.addToContacts(this.details)
+
+    this.form?.resetForm();
+
+    this.details.longitude = 6.605874;
+    this.details.latitude = 3.349149;
+
   }
+
 }

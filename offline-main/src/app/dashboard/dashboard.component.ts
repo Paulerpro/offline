@@ -1,5 +1,6 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, inject } from '@angular/core';
 import * as L from 'leaflet';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,16 +8,21 @@ import * as L from 'leaflet';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements AfterViewInit {
-  details = [
-    {
-      name: 'Paul Silas',
-      phoneNumber: '+234-906-962-5266',
-      email: 'paul.silas@example.com',
-      addresses: ['Maryland St, Ikeja, Lagos'],
-      longitude: 6.605874,
-      latitude: 3.349149,
-    },
-  ];
+
+  contactDetails: any[] = [];
+
+  dataService: DataService = inject(DataService)
+
+  ngOnInit(): void {
+
+    this.dataService.displayContacts()
+
+    // let contacts = JSON.parse(localStorage.getItem('contacts') || '[]')
+
+    // for (let i = 0; i < contacts.length; i++) {
+    //   this.contactDetails.push(contacts[i])
+    // }
+  }
 
   private map: any;
 
@@ -35,10 +41,22 @@ export class DashboardComponent implements AfterViewInit {
   }
 
   private addMarkers(): void {
-    this.details.forEach((data) => {
+    this.contactDetails.forEach((data) => {
       L.marker([data.latitude, data.longitude])
         .addTo(this.map)
         .bindPopup(`<b>${data.name}</b><br>${data.addresses[0]}`);
     });
   }
+
 }
+
+  // contactDetails = [
+  //   {
+  //     name: 'Paul Silas',
+  //     phoneNumber: '+234-906-962-5266',
+  //     email: 'paul.silas@example.com',
+  //     addresses: ['Maryland St, Ikeja, Lagos'],
+  //     longitude: 6.605874,
+  //     latitude: 3.349149,
+  //   },
+  // ];
